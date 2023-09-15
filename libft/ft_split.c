@@ -41,7 +41,7 @@ static void	*ft_free_memory(char **str, int j)
 	return (NULL);
 }
 
-static void	ft_aux_split(char const *s, char c, char **str, int *j)
+static void	*ft_aux_split(char const *s, char c, char **str, int *j)
 {
 	int	i;
 	int	start;
@@ -56,12 +56,16 @@ static void	ft_aux_split(char const *s, char c, char **str, int *j)
 				i++;
 			str[*j] = ft_alloc_and_fill(s, start, i);
 			if (!(str[*j]))
+			{
 				ft_free_memory(str, *j);
+				return (NULL);
+			}
 			(*j)++;
 		}
 		else
 			i++;
 	}
+	return (str);
 }
 
 static int	ft_count_words(char const *s, char c)
@@ -94,7 +98,8 @@ char	**ft_split(char const *s, char c)
 	str = (char **) malloc(sizeof(char *) * (ft_count_words(s, c) + 1));
 	if (!str)
 		return (NULL);
-	ft_aux_split(s, c, str, &j);
+	if (!ft_aux_split(s, c, str, &j))
+		return (NULL);
 	str[j] = NULL;
 	return (str);
 }

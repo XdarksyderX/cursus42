@@ -21,12 +21,16 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 	if (!s1 || !set)
 		return (NULL);
+	if (*s1 == '\0')
+		return (ft_strdup(""));
 	i = 0;
 	j = ft_strlen(s1);
 	while (s1[i] && ft_strchr(set, s1[i]))
 		i++;
 	while (j > i && ft_strchr(set, s1[j]))
 		j--;
+	if (j < i)
+		return (ft_strdup(""));
 	str = (char *)malloc(sizeof(char) * (j - i + 2));
 	if (!str)
 		return (NULL);

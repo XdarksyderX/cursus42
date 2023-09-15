@@ -45,6 +45,23 @@ static void	ft_fill(int n, char *result, int i, int neg)
 	result[i] = '\0';
 }
 
+int	ft_count(int n, int neg)
+{
+	int	count;
+
+	count = 0;
+	if (n == 0)
+		return (1);
+	while (n > 0)
+	{
+		n /= 10;
+		count++;
+	}
+	if (neg)
+		count++;
+	return (count);
+}
+
 char	*ft_itoa(int n)
 {
 	char	*result;
@@ -60,7 +77,7 @@ char	*ft_itoa(int n)
 		neg = 1;
 		n = -n;
 	}
-	result = (char *) malloc(sizeof(char) * 12);
+	result = (char *) malloc(sizeof(char) * (ft_count(n, neg) + 1));
 	if (!result)
 		return (NULL);
 	ft_fill(n, result, i, neg);

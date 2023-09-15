@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarci2 <migarci2@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/15 13:39:08 by migarci2          #+#    #+#             */
-/*   Updated: 2023/09/15 13:39:09 by migarci2         ###   ########.fr       */
+/*   Created: 2023/09/15 18:57:47 by migarci2          #+#    #+#             */
+/*   Updated: 2023/09/15 18:57:49 by migarci2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	char	*result;
+	t_list	*tmp;
 
-	result = ft_itoa(n);
-	if (!result)
+	if (!lst)
 		return ;
-	ft_putstr_fd(result, fd);
-	free(result);
+	while (*lst)
+	{
+		tmp = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = tmp;
+	}
 }
