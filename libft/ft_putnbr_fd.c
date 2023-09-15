@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarci2 <migarci2@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: migarci2 <migarci2@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/11 17:12:01 by migarci2          #+#    #+#             */
-/*   Updated: 2023/09/11 17:13:02 by migarci2         ###   ########.fr       */
+/*   Created: 2023/09/15 13:39:08 by migarci2          #+#    #+#             */
+/*   Updated: 2023/09/15 13:39:09 by migarci2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+void	ft_putnbr_fd(int n, int fd)
 {
-	char	*str;
-	char	*tmp;
+	char	*result;
 
-	tmp = NULL;
-	str = (char *)s;
-	while (1)
-	{
-		if (*str == (char)c)
-			tmp = str;
-		if (*str == '\0')
-		{
-			if (c == '\0')
-				return (str);
-			return (tmp);
-		}
-		str++;
-	}
+	result = ft_itoa(n);
+	ft_putstr_fd(result, fd);
+	free(result);
 }

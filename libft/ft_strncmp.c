@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarci2 <migarci2@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: migarci2 <migarci2@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/11 18:32:21 by migarci2          #+#    #+#             */
-/*   Updated: 2023/09/11 19:24:01 by migarci2         ###   ########.fr       */
+/*   Created: 2023/09/12 19:43:06 by migarci2          #+#    #+#             */
+/*   Updated: 2023/09/12 19:43:07 by migarci2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	unsigned char	*str;
 	size_t			i;
+	unsigned char	*c1;
+	unsigned char	*c2;
 
+	if (n == 0)
+		return (0);
 	i = 0;
-	str = (unsigned char *) s;
-	while (i < n)
+	c1 = (unsigned char *) s1;
+	c2 = (unsigned char *) s2;
+	while (c1[i] != '\0' && c2[i] != '\0' && i < n - 1)
 	{
-		if (*str == (unsigned char) c)
-			return (str);
+		if (c1[i] != c2[i])
+			break ;
 		i++;
-		str++;
 	}
-	return (NULL);
+	return (c1[i] - c2[i]);
 }
