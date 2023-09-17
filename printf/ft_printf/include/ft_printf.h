@@ -22,5 +22,6 @@ int		ft_count_nbr_chars(long long n);
 void	ft_putnbr_base_fd(int nbr, char *base, int fd);
 double	ft_ceil(double num);
 int		ft_printf(const char *str, ...);
+void	ft_putpointer_fd(void *ptr, int fd);
 
 #endif

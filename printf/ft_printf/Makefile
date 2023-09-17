@@ -1,4 +1,4 @@
-SRC = src/format_handlers/ft_char_handler.c src/format_handlers/ft_double_handler.c src/format_handlers/ft_format.c src/format_handlers/ft_hex_handler.c src/format_handlers/ft_int_handler.c src/format_handlers/ft_pointer_handler.c src/format_handlers/ft_string_handler.c src/format_handlers/ft_unsigned_handler.c src/ft_printf.c src/utils/ft_ceil.c src/utils/ft_count_nbr_chars.c src/utils/ft_is_space.c src/utils/ft_putnbr_base_fd.c
+SRC = src/format_handlers/ft_char_handler.c src/format_handlers/ft_format.c src/format_handlers/ft_hex_handler.c src/format_handlers/ft_int_handler.c src/format_handlers/ft_pointer_handler.c src/format_handlers/ft_string_handler.c src/format_handlers/ft_unsigned_handler.c src/ft_printf.c src/utils/ft_ceil.c src/utils/ft_count_nbr_chars.c src/utils/ft_is_space.c src/utils/ft_putnbr_base_fd.c src/utils/ft_putpointer_fd.c
 OBJ = $(SRC:.c=.o)
 NAME = libftprintf.a
 
@@ -16,7 +16,7 @@ $(NAME): $(OBJ)
 $(OBJ): %.o: %.c
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
 
-clean :
+clean:
 	$(MAKE) clean -C ./libft
 	rm -rf $(OBJ)
 

@@ -23,5 +23,5 @@ int	ft_hex_handler(int nb, int is_upper)
 		base = "0123456789abcdef";
 	ft_putnbr_base_fd(nb, base, 1);
 	digits = (int) ft_ceil(ft_count_nbr_chars((long long) nb) / 1.2041);
-	return (digits);
+	return (digits - 1);
 }

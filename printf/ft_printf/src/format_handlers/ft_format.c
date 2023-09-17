@@ -22,7 +22,7 @@ int	ft_format(char code, va_list var_args)
 	else if (code == 'p')
 		return (ft_pointer_handler(va_arg(var_args, void *)));
 	else if (code == 'd')
-		return (ft_double_handler(va_arg(var_args, double)));
+		return (ft_int_handler(va_arg(var_args, int)));
 	else if (code == 'i')
 		return (ft_int_handler(va_arg(var_args, int)));
 	else if (code == 'u')

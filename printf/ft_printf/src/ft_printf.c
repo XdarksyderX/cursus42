@@ -20,6 +20,7 @@ int	ft_printf(const char *str, ...)
 
 	va_start(var_args, str);
 	i = 0;
+	bytes_written = 0;
 	while (str[i])
 	{
 		if (str[i] == '%' && !ft_is_space(str[i + 1]))
