@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/printf.h"
+#include "../../include/ft_printf.h"
 
 void	ft_putun_fd(unsigned int nb, int fd)
 {

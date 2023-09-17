@@ -11,12 +11,12 @@
 /* ************************************************************************** */
 
 #include "../../include/format.h"
-#include "../../include/printf.h"
+#include "../../include/ft_printf.h"
 
-int	ft_format(char code, va_list var_args )
+int	ft_format(char code, va_list var_args)
 {
-	if (code == 'c' || code == '%')
-		return (ft_char_handler(va_arg(var_args, char)));
+	if (code == 'c')
+		return (ft_char_handler(va_arg(var_args, int)));
 	else if (code == 's')
 		return (ft_string_handler(va_arg(var_args, char *)));
 	else if (code == 'p')
@@ -31,4 +31,10 @@ int	ft_format(char code, va_list var_args )
 		return (ft_hex_handler(va_arg(var_args, int), 1));
 	else if (code == 'x')
 		return (ft_hex_handler(va_arg(var_args, int), 0));
+	else if (code == '%')
+	{
+		ft_putchar_fd('%', 1);
+		return (1);
+	}
+	return (0);
 }

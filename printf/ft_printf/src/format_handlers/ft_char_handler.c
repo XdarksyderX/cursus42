@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/printf.h"
+#include "../../include/ft_printf.h"
 
 int	ft_char_handler(char c)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/printf.h"
+#include "../../include/ft_printf.h"
 
 int	ft_hex_handler(int nb, int is_upper)
 {

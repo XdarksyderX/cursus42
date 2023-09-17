@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/printf.h"
+#include "../../include/ft_printf.h"
 
 static int	check_base_condition(char *base)
 {
@@ -41,10 +41,10 @@ static int	check_base_condition(char *base)
 
 static void	ft_putmaxneg_base_fd(int nbr, char *base, int fd)
 {
-	if (nbr <= (-1 * ft_strlen(base)))
+	if (nbr <= (-1 * (int) ft_strlen(base)))
 	{
-		ft_putmaxneg_base(nbr / ft_strlen(base), base, fd);
-		ft_putmaxneg_base(nbr % ft_strlen(base), base, fd);
+		ft_putmaxneg_base_fd(nbr / (int) ft_strlen(base), base, fd);
+		ft_putmaxneg_base_fd(nbr % (int) ft_strlen(base), base, fd);
 	}
 	else
 		ft_putchar_fd(base[-nbr], fd);
@@ -56,19 +56,19 @@ void	ft_putnbr_base_fd(int nbr, char *base, int fd)
 	{
 		if (nbr == -2147483648)
 		{
-			ft_putchar('-');
+			ft_putchar_fd('-', 1);
 			ft_putmaxneg_base_fd(nbr, base, fd);
 			return ;
 		}
 		if (nbr < 0)
 		{
-			ft_putchar('-');
+			ft_putchar_fd('-', fd);
 			nbr = -nbr;
 		}
-		if (nbr >= ft_strlen(base))
+		if (nbr >= (int) ft_strlen(base))
 		{
-			ft_putnbr_base_fd(nbr / ft_strlen(base), base, fd);
-			ft_putnbr_base_fd(nbr % ft_strlen(base), base, fd);
+			ft_putnbr_base_fd(nbr / (int) ft_strlen(base), base, fd);
+			ft_putnbr_base_fd(nbr % (int) ft_strlen(base), base, fd);
 		}
 		else
 			ft_putchar_fd(base[nbr], fd);
