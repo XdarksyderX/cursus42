@@ -31,7 +31,8 @@ int	ft_printf(const char *str, ...)
 		else
 		{
 			ft_putchar_fd(str[i], 1);
-			bytes_written++;
+			if (ft_isprint(str[i]))
+				bytes_written++;
 		}
 		i++;
 	}

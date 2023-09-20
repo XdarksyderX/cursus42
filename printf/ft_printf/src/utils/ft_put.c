@@ -12,37 +12,49 @@
 
 #include "../../include/ft_printf.h"
 
-
-static void recursive_putnbr_base_fd(unsigned int nbr, char *base, int fd)
+static void	recursive_putnbr_base_fd(unsigned long nbr, char *base, int fd)
 {
-    int base_len = ft_strlen(base);
+	size_t	base_len;
 
-    if (nbr >= (unsigned int)base_len)
-    {
-        recursive_putnbr_base_fd(nbr / base_len, base, fd);
-    }
-    ft_putchar_fd(base[nbr % base_len], fd);
+	base_len = ft_strlen(base);
+	if (nbr >= (unsigned long) base_len)
+	{
+		recursive_putnbr_base_fd(nbr / base_len, base, fd);
+	}
+	ft_putchar_fd(base[nbr % base_len], fd);
 }
 
-void ft_putnbr_base_fd(int nbr, char *base, int fd)
+void	ft_puthex_fd(int nbr, int is_upper, int fd)
 {
-    unsigned int unbr;
+	unsigned int	unbr;
+	char			*base;
 
-    if (ft_strlen(base) == 16 && nbr < 0)
-    {
-        unbr = (unsigned int)nbr;
-    }
-    else
-    {
-        if (nbr < 0)
-        {
-            unbr = (unsigned int)(-nbr);
-            ft_putchar_fd('-', fd);
-        }
-        else
-        {
-            unbr = (unsigned int)nbr;
-        }
-    }
-    recursive_putnbr_base_fd(unbr, base, fd);
+	if (is_upper)
+		base = "0123456789ABCDEF";
+	else
+		base = "0123456789abcdef";
+	unbr = (unsigned int) nbr;
+	recursive_putnbr_base_fd(unbr, base, fd);
+}
+
+void	ft_putpointer_fd(void *ptr, int fd)
+{
+	unsigned long long	ptr_value;
+
+	if (!ptr)
+		return (ft_putstr_fd("(nil)", fd));
+	ptr_value = (unsigned long) ptr;
+	ft_putstr_fd("0x", fd);
+	recursive_putnbr_base_fd(ptr_value, "0123456789abcdef", fd);
+}
+
+void	ft_putunsigned_fd(unsigned int nb, int fd)
+{
+	if (nb >= 10)
+	{
+		ft_putunsigned_fd(nb / 10, fd);
+		ft_putunsigned_fd(nb % 10, fd);
+	}
+	else
+		ft_putchar_fd(nb + 48, fd);
 }

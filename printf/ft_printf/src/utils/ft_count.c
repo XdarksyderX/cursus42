@@ -10,26 +10,62 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_count_nbr_chars(long long n)
+#include "../../include/ft_printf.h"
+
+int	ft_count_signed(int nbr, int base_len)
 {
-	long long	count;
-	int			neg;
+	int	count;
+	int	neg;
 
 	neg = 0;
 	count = 0;
-	if (n < 0)
+	if (nbr == INT_MIN)
+		return (11);
+	if (nbr < 0)
 	{
-		n = -n;
+		nbr = -nbr;
 		neg = 1;
 	}
-	if (n == 0)
+	if (nbr == 0)
 		return (1);
-	while (n > 0)
+	while (nbr > 0)
 	{
-		n /= 10;
+		nbr /= base_len;
 		count++;
 	}
 	if (neg)
 		count++;
 	return (count);
+}
+
+int	ft_count_unsigned(int nbr, int base_len)
+{
+	unsigned int	unbr;
+	unsigned int	count;
+
+	unbr = (unsigned int) nbr;
+	if (unbr == 0)
+		return (1);
+	count = 0;
+	while (unbr > 0)
+	{
+		unbr /= base_len;
+		count++;
+	}
+	return (count);
+}
+
+int	ft_count_pointer(unsigned long unbr)
+{
+	unsigned int	count;
+
+	if (unbr == 0)
+		return (1);
+	count = 0;
+	while (unbr > 0)
+	{
+		unbr /= 16;
+		count++;
+	}
+	return (count + 2);
 }

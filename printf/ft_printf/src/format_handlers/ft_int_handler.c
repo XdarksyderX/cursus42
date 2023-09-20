@@ -14,6 +14,6 @@
 
 int	ft_int_handler(int n)
 {
-	ft_putnbr_fd(n, 1);
-	return (ft_count_nbr_chars((long long) n));
+	ft_putnbr_fd(n, STDOUT_FILENO);
+	return (ft_count_signed((long) n, 10));
 }

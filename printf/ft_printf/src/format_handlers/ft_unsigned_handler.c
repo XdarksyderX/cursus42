@@ -12,19 +12,8 @@
 
 #include "../../include/ft_printf.h"
 
-void	ft_putun_fd(unsigned int nb, int fd)
-{
-	if (nb >= 10)
-	{
-		ft_putun_fd(nb / 10, fd);
-		ft_putun_fd(nb % 10, fd);
-	}
-	else
-		ft_putchar_fd(nb + 48, fd);
-}
-
 int	ft_unsigned_handler(unsigned int n)
 {
-	ft_putun_fd(n, 1);
-	return (ft_count_nbr_chars((long long) n));
+	ft_putunsigned_fd(n, STDOUT_FILENO);
+	return (ft_count_unsigned((int) n, 10));
 }

@@ -14,14 +14,6 @@
 
 int	ft_hex_handler(int nb, int is_upper)
 {
-	char	*base;
-	int		digits;
-
-	if (is_upper)
-		base = "0123456789ABCDEF";
-	else
-		base = "0123456789abcdef";
-	ft_putnbr_base_fd(nb, base, 1);
-	digits = (int) ft_ceil(ft_count_nbr_chars((long long) nb) / 1.2041);
-	return (digits - 1);
+	ft_puthex_fd(nb, is_upper, STDOUT_FILENO);
+	return (ft_count_unsigned(nb, 16));
 }
