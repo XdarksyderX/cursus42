@@ -14,14 +14,23 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
+# include <limits.h>
+
 # include "../libft/libft.h"
 # include "./format.h"
 
-int		ft_is_space(char c);
-int		ft_count_nbr_chars(long long n);
-void	ft_putnbr_base_fd(int nbr, char *base, int fd);
-double	ft_ceil(double num);
 int		ft_printf(const char *str, ...);
+
+int		ft_is_space(char c);
+
+int		ft_count_signed(int nbr, int base_len);
+int		ft_count_unsigned(int nbr, int base_len);
+int		ft_count_pointer(unsigned long unbr);
+
+void	ft_puthex_fd(int nbr, int is_upper, int fd);
 void	ft_putpointer_fd(void *ptr, int fd);
+void	ft_putunsigned_fd(unsigned int nb, int fd);
+
+double	ft_ceil(double num);
 
 #endif

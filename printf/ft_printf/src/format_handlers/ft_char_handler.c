@@ -14,6 +14,6 @@
 
 int	ft_char_handler(char c)
 {
-	ft_putchar_fd(c, 1);
+	ft_putchar_fd(c, STDOUT_FILENO);
 	return (1);
 }

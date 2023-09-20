@@ -14,6 +14,8 @@
 
 int	ft_string_handler(char *s)
 {
-	ft_putstr_fd(s, 1);
+	if (!s)
+		s = "(null)";
+	ft_putstr_fd(s, STDOUT_FILENO);
 	return ((int) ft_strlen((const char *) s));
 }
