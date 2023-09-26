@@ -1,0 +1,9 @@
+{
+	"files.associations": {
+		"pipex.h": "c",
+		"command.h": "c",
+		"libft.h": "c",
+		"pipex_bonus.h": "c",
+		"command_bonus.h": "c"
+	}
+}
