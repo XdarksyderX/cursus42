@@ -33,6 +33,21 @@ void	ft_exec_command(t_command	command, int infile_fd, int outfile_fd)
 	exit(EXIT_FAILURE);
 }
 
+int	ft_free_command_list(t_command_list *command_list)
+{
+	t_command_list	*tmp;
+
+	while (command_list)
+	{
+		tmp = command_list;
+		command_list = command_list->next;
+		free(tmp->command.argv);
+		free(tmp->command.pathname);
+		free(tmp);
+	}
+	return (0);
+}
+
 void	add_command_to_list(t_command_list **command_list, t_command command)
 {
 	t_command_list	*new_node;

@@ -32,6 +32,7 @@ typedef struct s_command_list {
 }	t_command_list;
 
 t_command		ft_parse_command(char	*str, char **envp);
+int				ft_free_command_list(t_command_list *command_list);
 t_command_list	*ft_parse_command_list(char **argv, char **envp);
 void			ft_exec_command(t_command	command, int infile_fd,
 					int outfile_fd);

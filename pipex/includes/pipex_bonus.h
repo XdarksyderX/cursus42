@@ -23,5 +23,6 @@
 
 void	ft_handle_error(char *str);
 void	fork_and_exec(int infile_fd, int outfile_fd, t_command command);
+int		ft_open(char *filename, int flags);
 
 #endif

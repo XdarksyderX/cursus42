@@ -32,3 +32,13 @@ void	fork_and_exec(int infile_fd, int outfile_fd, t_command command)
 		exit(EXIT_FAILURE);
 	}
 }
+
+int	ft_open(char *filename, int flags)
+{
+	int	fd;
+
+	fd = open(filename, flags);
+	if (fd == -1)
+		ft_handle_error(filename);
+	return (fd);
+}

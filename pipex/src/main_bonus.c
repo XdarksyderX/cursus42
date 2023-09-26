@@ -19,9 +19,7 @@ int	main(int argc, char **argv, char **envp)
 	int				infile_fd;
 	int				outfile_fd;
 
-	infile_fd = open(argv[1], O_RDONLY);
-	if (infile_fd == -1)
-		ft_handle_error(argv[1]);
+	infile_fd = ft_open(argv[1], O_RDONLY);
 	command_list = ft_parse_command_list(argv, envp);
 	while (command_list && command_list->next)
 	{
@@ -40,5 +38,5 @@ int	main(int argc, char **argv, char **envp)
 		ft_handle_error(argv[argc - 1]);
 	fork_and_exec(infile_fd, outfile_fd, command_list->command);
 	wait(NULL);
-	return (0);
+	return (ft_free_command_list(command_list));
 }
