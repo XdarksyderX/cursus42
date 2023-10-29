@@ -11,58 +11,78 @@
 /* ************************************************************************** */
 
 #include "../include/stack.h"
-#include <stdlib.h>
 
 void	push(t_stack *stack, int value)
 {
 	t_node	*new_node;
 
-	new_node = (t_node *) malloc(sizeof(t_node));
+	new_node = (t_node *)malloc(sizeof(t_node));
 	if (!new_node)
 		return ;
 	new_node->data = value;
 	new_node->next = stack->top;
+	new_node->prev = NULL;
+	if (stack->top)
+		stack->top->prev = new_node;
 	stack->top = new_node;
-	if (stack->bottom == NULL)
+	if (!stack->bottom)
 		stack->bottom = new_node;
+	stack->size++;
 }
 
 void	swap(t_stack *stack)
 {
 	t_node	*tmp;
 
-	if (stack->top == NULL || stack->top->next == NULL)
+	if (stack->size < 2)
 		return ;
 	tmp = stack->top->next;
 	stack->top->next = tmp->next;
+	tmp->prev = NULL;
+	if (tmp->next)
+		tmp->next->prev = stack->top;
 	tmp->next = stack->top;
+	stack->top->prev = tmp;
 	stack->top = tmp;
 }
 
 void	rotate(t_stack *stack)
 {
-	t_node	*tmp;
-
-	if (stack->top == NULL || stack->top->next == NULL)
+	if (stack->size < 2)
 		return ;
-	tmp = stack->top;
+	stack->top->prev = stack->bottom;
+	stack->bottom->next = stack->top;
+	stack->bottom = stack->top;
 	stack->top = stack->top->next;
-	stack->bottom->next = tmp;
-	stack->bottom = tmp;
-	tmp->next = NULL;
+	stack->top->prev = NULL;
+	stack->bottom->next = NULL;
 }
 
 void	reverse_rotate(t_stack *stack)
 {
-	t_node	*second_to_bottom;
-
-	if (stack->top == NULL || stack->top->next == NULL)
+	if (stack->size < 2)
 		return ;
-	second_to_bottom = stack->top;
-	while (second_to_bottom->next != stack->bottom)
-		second_to_bottom = second_to_bottom->next;
 	stack->bottom->next = stack->top;
+	stack->top->prev = stack->bottom;
 	stack->top = stack->bottom;
-	stack->bottom = second_to_bottom;
-	second_to_bottom->next = NULL;
+	stack->bottom = stack->bottom->prev;
+	stack->bottom->next = NULL;
+	stack->top->prev = NULL;
 }
+
+void pop(t_stack *stack)
+{
+	t_node	*tmp;
+
+	if (!stack->top)
+		return ;
+	tmp = stack->top;
+	stack->top = stack->top->next;
+	if (stack->top)
+		stack->top->prev = NULL;
+	else
+		stack->bottom = NULL;
+	free(tmp);
+	stack->size--;
+}
+

@@ -28,55 +28,83 @@ static int	is_numeric(char *str)
 	return (1);
 }
 
-int	*ft_parse_args(int argc, char **argv)
+static int	*allocate_and_fill_array(char **str_nums, int *size)
 {
-	int	*array;
 	int	i;
+	int	*array;
 
-	if (argc < 2)
-		return (NULL);
-	array = (int *) ft_calloc(argc - 1, sizeof(int));
+	i = 0;
+	while (str_nums[i])
+		i++;
+	*size = i;
+	array = (int *)ft_calloc(i, sizeof(int));
 	if (!array)
 		return (NULL);
-	i = 1;
-	while (i < argc)
+	i = 0;
+	while (str_nums[i])
 	{
-		if (!is_numeric(argv[i + 1])
-			|| !ft_memchr(array, ft_atoi(argv[i + 1]), i))
+		if (!is_numeric(str_nums[i]) || !ft_exists_in_array(array, ft_atoi(str_nums[i]), i))
 		{
-			ft_putstr_fd("Error\n", STDOUT_FILENO);
 			free(array);
 			return (NULL);
 		}
-		array[i] = ft_atoi(argv[i + 1]);
+		array[i] = ft_atoi(str_nums[i]);
 		i++;
 	}
 	return (array);
 }
 
-t_stack	*ft_init_stack(char id)
+int	*ft_parse_args(int argc, char **argv, int *size)
+{
+	char	**str_nums = NULL;
+	int		*array = NULL;
+
+	if (argc < 2 || !argv[argc - 1][0])
+		return (NULL);
+
+	if (argc == 2)
+	{
+		str_nums = ft_split(argv[1], ' ');
+		if (str_nums)
+		{
+			array = allocate_and_fill_array(str_nums, size);
+			ft_free_str_nums(str_nums, *size);
+		}
+	}
+	else if (argc > 2)
+	{
+		str_nums = argv + 1;
+		array = allocate_and_fill_array(str_nums, size);
+	}
+	if (!str_nums || !array)
+		return (NULL);
+	return (array);
+}
+
+t_stack	*ft_init_stack()
 {
 	t_stack	*stack;
 
 	stack = (t_stack *) malloc(sizeof(t_stack));
 	if (!stack)
 		return (NULL);
-	stack->id = id;
+	stack->size = 0;
+	stack->top = NULL;
+	stack->bottom = NULL;
 	return (stack);
 }
 
-void	ft_fill_stack(t_stack *stack, int *array)
+void	ft_fill_stack(t_stack *stack, int *array, int size)
 {
 	int	i;
 
 	if (!stack || !array)
 		return ;
-	if (ft_check_sort(array))
-		return ;
-	i = 0;
-	while (i < sizeof(array) / sizeof(int))
+	i = size - 1;
+	while (i >= 0)
 	{
 		push(stack, array[i]);
-		i++;
+		i--;
 	}
+	stack->size = size;
 }

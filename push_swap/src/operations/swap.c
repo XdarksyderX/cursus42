@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: migarci2 <migarci2@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 16:53:23 by migarci2          #+#    #+#             */
-/*   Updated: 2023/10/26 16:53:25 by migarci2         ###   ########.fr       */
+/*   Created: 2023/10/23 20:13:35 by migarci2          #+#    #+#             */
+/*   Updated: 2023/10/23 20:13:40 by migarci2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/stack.h"
+#include "../../include/stack.h"
 
-int	ft_check_sort(int *array)
+void	sa(t_stack *stack_a)
 {
-	int	i;
-
-	i = 0;
-	while (i < sizeof(array) / sizeof(int) - 1)
-	{
-		if (array[i] > array[i + 1])
-			return (0);
-		i++;
-	}
-	return (1);
+	swap(stack_a);
+	ft_putstr_fd("sa\n", STDOUT_FILENO);
 }
+
+void	sb(t_stack *stack_b)
+{
+	swap(stack_b);
+	ft_putstr_fd("sb\n", STDOUT_FILENO);
+}
+
+void	ss(t_stack *stack_a, t_stack *stack_b)
+{
+	swap(stack_a);
+	swap(stack_b);
+	ft_putstr_fd("ss\n", STDOUT_FILENO);
+}
+
