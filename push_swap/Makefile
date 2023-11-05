@@ -2,7 +2,7 @@ NAME=push_swap
 CC = gcc
 CFLAGS = -Wall -Wextra
 
-SRC=src/main.c src/free.c src/operations/push.c src/operations/rev_rot.c src/operations/rotate.c src/operations/swap.c src/parser.c src/parser2.c src/sort/helpers.c src/sort/sort.c src/stack.c 
+SRC=src/main.c src/free.c src/operations/push.c src/operations/rev_rot.c src/operations/rotate.c src/operations/swap.c src/parser.c src/parser2.c src/sort/helpers.c src/sort/helpers2.c src/sort/sort.c src/stack.c 
 OBJ=$(SRC:.c=.o)
 
 all: $(NAME)

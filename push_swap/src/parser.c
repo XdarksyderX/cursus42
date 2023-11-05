@@ -81,7 +81,7 @@ int	*ft_parse_args(int argc, char **argv, int *size)
 	return (array);
 }
 
-t_stack	*ft_init_stack()
+t_stack	*ft_init_stack(void)
 {
 	t_stack	*stack;
 

@@ -12,13 +12,13 @@
 
 #include "../../include/stack.h"
 
-void ra(t_stack *stack_a)
+void	ra(t_stack *stack_a)
 {
 	rotate(stack_a);
 	ft_putstr_fd("ra\n", STDOUT_FILENO);
 }
 
-void rb(t_stack *stack_b)
+void	rb(t_stack *stack_b)
 {
 	rotate(stack_b);
 	ft_putstr_fd("rb\n", STDOUT_FILENO);

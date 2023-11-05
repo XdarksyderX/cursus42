@@ -17,7 +17,7 @@ void	ft_sort_3_elements(t_stack *stack_a)
 	t_node	*highest_node;
 
 	if (stack_a == NULL || stack_a->size < 2)
-		return;
+		return ;
 	if (stack_a->size == 2)
 	{
 		if (stack_a->top->data > stack_a->top->next->data)
@@ -63,38 +63,40 @@ void	ft_sort_5_elements(t_stack *stack_a, t_stack *stack_b)
 
 void	ft_sort(t_stack *stack_a, t_stack *stack_b)
 {
-	while (stack_a->size > 0)
-	{
-		pb(stack_a, stack_b); // Pop de stack_a y push en stack_b
+	int	size_a;
 
-		while (stack_b->size > 1 && stack_b->top->data < stack_b->top->next->data)
-		{
-			sa(stack_b);  // Swap en stack_b si el elemento del tope es menor que el siguiente
-			pa(stack_a, stack_b);  // Mueve el elemento del tope de stack_b de nuevo a stack_a
-		}
+	size_a = stack_a->size;
+	if (size_a-- > 3 && !ft_check_sort(stack_a))
+		pb(stack_a, stack_b);
+	if (size_a-- > 3 && !ft_check_sort(stack_a))
+		pb(stack_a, stack_b);
+	while (size_a-- > 3 && !ft_check_sort(stack_a))
+	{
+		ft_set_stack(stack_a, stack_b);
+		ft_move_a_b(stack_a, stack_b);
+	}
+	ft_sort_3_elements(stack_a);
+	while (stack_b->size)
+	{
+		ft_set_stack(stack_b, stack_a);
+		ft_move_b_a(stack_a, stack_b);
 	}
 
-	// Ahora, stack_b tiene los elementos en orden ascendente.
-	// Pasamos los elementos de vuelta a stack_a
-	while (stack_b->size > 0)
-	{
-		pa(stack_a, stack_b); // Pop de stack_b y push en stack_a
-	}
 }
 
-void push_swap(t_stack *stack_a, t_stack *stack_b)
+void	push_swap(t_stack *stack_a, t_stack *stack_b)
 {
-	int size;
+	int	size;
 
 	size = stack_a->size;
-    if (ft_check_sort(stack_a))
+	if (ft_check_sort(stack_a))
 		return ;
 	else if (size == 2)
-        sa(stack_a);
-    else if (size == 3)
-        ft_sort_3_elements(stack_a);
-    else if (size <= 5)
-        ft_sort_5_elements(stack_a, stack_b);
-    else
-		ft_sort(stack_a, stack_b);
+		sa(stack_a);
+	else if (size == 3)
+		ft_sort_3_elements(stack_a);
+	else if (size <= 5)
+		ft_sort_5_elements(stack_a, stack_b);
+	else
+		ft_insort(stack_a, stack_b);
 }

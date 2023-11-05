@@ -1,6 +1,6 @@
-int ft_exists_in_array(int *array, int num, int size)
+int	ft_exists_in_array(int *array, int num, int size)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < size)

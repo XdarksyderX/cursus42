@@ -70,7 +70,7 @@ void	reverse_rotate(t_stack *stack)
 	stack->top->prev = NULL;
 }
 
-void pop(t_stack *stack)
+void	pop(t_stack *stack)
 {
 	t_node	*tmp;
 

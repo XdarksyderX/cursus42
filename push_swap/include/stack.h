@@ -15,18 +15,26 @@
 
 # include "../libft/libft.h"
 # include <limits.h>
+# include <stdbool.h>
+
 typedef struct node
 {
 	int			data;
+	int			index;
+	int			cost;
+	bool		above_median;
+	bool		cheapest;
+
+	struct node	*target;
 	struct node	*next;
-	struct node *prev;
+	struct node	*prev;
 }	t_node;
 
 typedef struct stack
 {
 	t_node	*top;
 	t_node	*bottom;
-	int	size;
+	int		size;
 }	t_stack;
 
 void	push(t_stack *stack, int value);
@@ -36,20 +44,22 @@ void	reverse_rotate(t_stack *stack);
 void	pop(t_stack *stack);
 
 
-int 	*ft_parse_args(int argc, char **argv, int *size);
-int 	ft_exists_in_array(int *array, int num, int size);
-t_stack	*ft_init_stack();
+int		*ft_parse_args(int argc, char **argv, int *size);
+int		ft_exists_in_array(int *array, int num, int size);
+t_stack	*ft_init_stack(void);
 void	ft_fill_stack(t_stack *stack, int *array, int size);
-void	ft_print_stack(t_stack *stack);
-
 int		ft_check_sort(t_stack *stack);
-t_node	*ft_find_min_node(t_stack *stack);
 t_node	*ft_find_max_node(t_stack *stack);
-int		ft_get_median(t_stack *stack);
+void	ft_update_indexes(t_stack *stack);
+void	ft_set_targets(t_stack *stack_a, t_stack *stack_b);
+void	ft_set_costs(t_stack *stack_a, t_stack *stack_b);
+void	ft_set_cheapest(t_stack *stack_a);
+void	ft_set_stack(t_stack *stack_a, t_stack *stack_b);
+
 
 void	ft_sort_3_elements(t_stack *stack_a);
 void	ft_sort_5_elements(t_stack *stack_a, t_stack *stack_b);
-void 	push_swap(t_stack *stack_a, t_stack *stack_b);
+void	push_swap(t_stack *stack_a, t_stack *stack_b);
 
 void	ra(t_stack *stack_a);
 void	rb(t_stack *stack_b);

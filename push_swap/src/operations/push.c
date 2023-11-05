@@ -14,7 +14,8 @@
 
 void	pa(t_stack *stack_a, t_stack *stack_b)
 {
-	if (stack_b && stack_b->top) {
+	if (stack_b && stack_b->top)
+	{
 		push(stack_a, stack_b->top->data);
 		pop(stack_b);
 		ft_putstr_fd("pa\n", STDOUT_FILENO);
@@ -23,7 +24,8 @@ void	pa(t_stack *stack_a, t_stack *stack_b)
 
 void	pb(t_stack *stack_a, t_stack *stack_b)
 {
-	if (stack_a && stack_a->top) {
+	if (stack_a && stack_a->top)
+	{
 		push(stack_b, stack_a->top->data);
 		pop(stack_a);
 		ft_putstr_fd("pb\n", STDOUT_FILENO);

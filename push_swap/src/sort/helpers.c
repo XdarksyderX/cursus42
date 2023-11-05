@@ -1,49 +1,5 @@
 #include "../../include/stack.h"
 
-void	ft_print_stack(t_stack *stack)
-{
-	t_node	*current;
-
-	if (stack == NULL || stack->top == NULL)
-	{
-		ft_putstr_fd("Stack is empty.\n", STDOUT_FILENO);
-		return ;
-	}
-	ft_putstr_fd("Stack: ", STDOUT_FILENO);
-	current = stack->top;
-	while (1)
-	{
-		ft_putnbr_fd(current->data, STDOUT_FILENO);
-		if (current->next == NULL)
-			break ;
-		current = current->next;
-	}
-	ft_putstr_fd("\n", STDOUT_FILENO);
-}
-
-t_node	*ft_find_min_node(t_stack *stack)
-{
-	int		min;
-	t_node	*min_node;
-	t_node	*temp_node;
-
-	if (!stack || !stack->top)
-		return (NULL);
-	min = stack->top->data;
-	min_node = stack->top;
-	temp_node = stack->top;
-	while (temp_node)
-	{
-		if (temp_node->data < min)
-		{
-			min = temp_node->data;
-			min_node = temp_node;
-		}
-		temp_node = temp_node->next;
-	}
-	return (min_node);
-}
-
 t_node	*ft_find_max_node(t_stack *stack)
 {
 	int				highest;
@@ -70,7 +26,7 @@ t_node	*ft_find_max_node(t_stack *stack)
 int	ft_check_sort(t_stack *stack)
 {
 	t_node	*current;
-	
+
 	if (stack == NULL || stack->top == NULL)
 		return (0);
 
@@ -84,38 +40,48 @@ int	ft_check_sort(t_stack *stack)
 	return (1);
 }
 
-int	ft_get_median(t_stack *stack)
+void	ft_update_indexes(t_stack *stack)
 {
-	int	*array;
-	int	i;
-	int	j;
-	int	tmp;
+	int		i;
+	int		median;
+	t_node	*current;
 
-	array = (int *) malloc(sizeof(int) * stack->size);
-	if (!array)
-		return (-1);
 	i = 0;
-	while (stack->top)
+	if (!stack)
+		return ;
+	median = stack->size / 2;
+	current = stack->top;
+	while (stack->size)
 	{
-		array[i] = stack->top->data;
-		stack->top = stack->top->next;
+		current->index = i;
+		if (i <= median)
+			current->above_median = true;
+		else
+			current->above_median = false;
+		current = current->next;
 		i++;
 	}
-	i = 0;
-	while (i < stack->size)
-	{
-		j = i + 1;
-		while (j < stack->size)
-		{
-			if (array[i] > array[j])
-			{
-				tmp = array[i];
-				array[i] = array[j];
-				array[j] = tmp;
-			}
-			j++;
-		}
-		i++;
-	}
-	return (array[stack->size / 2]);
 }
+
+void	ft_move_a_to_b(t_stack	*stack_a, t_stack *stack_b)
+{
+	t_node	*current;
+
+	if (!stack_a || !stack_b)
+		return ;
+	current = stack_a->top;
+	while (current && !current->cheapest)
+		current = current->next;
+	if (current->above_median)
+	{
+		while (stack_a->top != current)
+			ra(stack_a);
+	}
+	else
+	{
+		while (stack_a->top != current)
+			rra(stack_a);
+	}
+	pb(stack_a, stack_b);
+}
+
