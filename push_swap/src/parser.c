@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarci2 <migarci2@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: migarci2 <migarci2@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:52:41 by migarci2          #+#    #+#             */
-/*   Updated: 2023/10/26 16:52:42 by migarci2         ###   ########.fr       */
+/*   Updated: 2023/11/06 19:20:49 by migarci2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ static int	*allocate_and_fill_array(char **str_nums, int *size)
 	i = 0;
 	while (str_nums[i])
 	{
-		if (!is_numeric(str_nums[i]) || !ft_exists_in_array(array, ft_atoi(str_nums[i]), i))
+		if (!is_numeric(str_nums[i])
+			|| !ft_exists_in_array(array, ft_atoi(str_nums[i]), i))
 		{
 			free(array);
 			return (NULL);
@@ -56,12 +57,13 @@ static int	*allocate_and_fill_array(char **str_nums, int *size)
 
 int	*ft_parse_args(int argc, char **argv, int *size)
 {
-	char	**str_nums = NULL;
-	int		*array = NULL;
+	char	**str_nums;
+	int		*array;
 
+	str_nums = NULL;
+	array = NULL;
 	if (argc < 2 || !argv[argc - 1][0])
 		return (NULL);
-
 	if (argc == 2)
 	{
 		str_nums = ft_split(argv[1], ' ');

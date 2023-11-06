@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarci2 <migarci2@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: migarci2 <migarci2@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 20:13:35 by migarci2          #+#    #+#             */
-/*   Updated: 2023/10/23 20:13:40 by migarci2         ###   ########.fr       */
+/*   Updated: 2023/11/06 19:20:28 by migarci2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,3 @@ void	pb(t_stack *stack_a, t_stack *stack_b)
 		ft_putstr_fd("pb\n", STDOUT_FILENO);
 	}
 }
-

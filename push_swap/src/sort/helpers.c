@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   helpers.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: migarci2 <migarci2@student.42malaga.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/06 19:19:52 by migarci2          #+#    #+#             */
+/*   Updated: 2023/11/06 19:19:53 by migarci2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/stack.h"
 
 t_node	*ft_find_max_node(t_stack *stack)
@@ -29,7 +41,6 @@ int	ft_check_sort(t_stack *stack)
 
 	if (stack == NULL || stack->top == NULL)
 		return (0);
-
 	current = stack->top;
 	while (current->next != NULL)
 	{
@@ -85,3 +96,11 @@ void	ft_move_a_to_b(t_stack	*stack_a, t_stack *stack_b)
 	pb(stack_a, stack_b);
 }
 
+void	ft_set_stack(t_stack *stack_a, t_stack *stack_b)
+{
+	ft_update_indexes(stack_a);
+	ft_update_indexes(stack_b);
+	ft_set_targets(stack_a, stack_b);
+	ft_set_costs(stack_a, stack_b);
+	ft_set_cheapest(stack_a);
+}

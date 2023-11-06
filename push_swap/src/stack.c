@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarci2 <migarci2@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: migarci2 <migarci2@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 20:13:35 by migarci2          #+#    #+#             */
-/*   Updated: 2023/10/23 20:13:40 by migarci2         ###   ########.fr       */
+/*   Updated: 2023/11/06 19:20:14 by migarci2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,3 @@ void	pop(t_stack *stack)
 	free(tmp);
 	stack->size--;
 }
-

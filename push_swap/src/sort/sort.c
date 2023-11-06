@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarci2 <migarci2@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: migarci2 <migarci2@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:53:23 by migarci2          #+#    #+#             */
-/*   Updated: 2023/10/26 16:53:25 by migarci2         ###   ########.fr       */
+/*   Updated: 2023/11/06 19:19:45 by migarci2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	ft_sort_3_elements(t_stack *stack_a)
 	if (stack_a->top->data > stack_a->top->next->data)
 		sa(stack_a);
 }
-
 
 void	ft_sort_5_elements(t_stack *stack_a, t_stack *stack_b)
 {
@@ -81,7 +80,6 @@ void	ft_sort(t_stack *stack_a, t_stack *stack_b)
 		ft_set_stack(stack_b, stack_a);
 		ft_move_b_a(stack_a, stack_b);
 	}
-
 }
 
 void	push_swap(t_stack *stack_a, t_stack *stack_b)

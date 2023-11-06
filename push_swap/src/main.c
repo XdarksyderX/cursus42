@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: migarci2 <migarci2@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: migarci2 <migarci2@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:52:28 by migarci2          #+#    #+#             */
-/*   Updated: 2023/10/26 16:52:29 by migarci2         ###   ########.fr       */
+/*   Updated: 2023/11/06 19:21:05 by migarci2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../include/stack.h"
 
@@ -19,7 +18,7 @@ int	main(int argc, char	**argv)
 	t_stack	*stack_b;
 	int		*input;
 	int		size;
-	
+
 	input = ft_parse_args(argc, argv, &size);
 	if (!input)
 	{

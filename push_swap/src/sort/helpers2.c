@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   helpers2.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: migarci2 <migarci2@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/06 19:18:54 by migarci2          #+#    #+#             */
+/*   Updated: 2023/11/06 19:18:59 by migarci2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/stack.h"
 
 static t_node	*ft_find_target_for_node(t_stack *stack_b,
@@ -91,13 +103,3 @@ t_node	*ft_get_cheapest(t_stack *stack)
 	}
 	return (NULL);
 }
-
-void	ft_set_stack(t_stack *stack_a, t_stack *stack_b)
-{
-	ft_update_indexes(stack_a);
-	ft_update_indexes(stack_b);
-	ft_set_targets(stack_a, stack_b);
-	ft_set_costs(stack_a, stack_b);
-	ft_set_cheapest(stack_a);
-}
-
