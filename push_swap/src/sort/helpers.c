@@ -62,7 +62,7 @@ void	ft_update_indexes(t_stack *stack)
 		return ;
 	median = stack->size / 2;
 	current = stack->top;
-	while (stack->size)
+	while (current)
 	{
 		current->index = i;
 		if (i <= median)
@@ -74,26 +74,27 @@ void	ft_update_indexes(t_stack *stack)
 	}
 }
 
-void	ft_move_a_to_b(t_stack	*stack_a, t_stack *stack_b)
+t_node	*ft_find_min_node(t_stack *stack)
 {
-	t_node	*current;
+	int				lowest;
+	t_node			*lowest_node;
+	t_node			*temp_node;
 
-	if (!stack_a || !stack_b)
-		return ;
-	current = stack_a->top;
-	while (current && !current->cheapest)
-		current = current->next;
-	if (current->above_median)
+	if (NULL == stack || stack->top == NULL)
+		return (NULL);
+	lowest = INT_MAX;
+	lowest_node = NULL;
+	temp_node = stack->top;
+	while (temp_node)
 	{
-		while (stack_a->top != current)
-			ra(stack_a);
+		if (temp_node->data < lowest)
+		{
+			lowest = temp_node->data;
+			lowest_node = temp_node;
+		}
+		temp_node = temp_node->next;
 	}
-	else
-	{
-		while (stack_a->top != current)
-			rra(stack_a);
-	}
-	pb(stack_a, stack_b);
+	return (lowest_node);
 }
 
 void	ft_set_stack(t_stack *stack_a, t_stack *stack_b)

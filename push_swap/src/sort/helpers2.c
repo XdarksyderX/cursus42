@@ -52,54 +52,71 @@ void	ft_set_targets(t_stack *stack_a, t_stack *stack_b)
 
 void	ft_set_costs(t_stack *stack_a, t_stack *stack_b)
 {
-	t_node	*current_stack_a;
-	int		cost;
+	t_node	*current_a;
 
-	current_stack_a = stack_a->top;
-	while (current_stack_a)
+	current_a = stack_a->top;
+	while (current_a)
 	{
-		current_stack_a->cost = current_stack_a->index;
-		if (!current_stack_a->above_median)
-			current_stack_a->cost += stack_a->size - current_stack_a->index;
-		if (current_stack_a->cost > stack_a->size)
-			current_stack_a->cost -= current_stack_a->target->index;
+		current_a->cost = current_a->index;
+		if (!current_a->above_median)
+			current_a->cost = stack_a->size - current_a->index;
+		if (current_a->target)
+		{
+			if (current_a->target->above_median)
+				current_a->cost += current_a->target->index;
+			else
+				current_a->cost += stack_b->size - current_a->target->index;
+		}
 		else
-			current_stack_a->cost += stack_b->size
-				- current_stack_a->target->index;
-		current_stack_a = current_stack_a->next;
+			current_a->cost = INT_MAX;
+		current_a = current_a->next;
 	}
 }
 
 void	ft_set_cheapest(t_stack *stack)
 {
 	t_node	*current;
-	t_node	*cheapest;
+	t_node	*cheapest_node;
+	long	cheapest_value;
 
 	if (!stack || !stack->top)
 		return ;
+	cheapest_value = LONG_MAX;
 	current = stack->top;
-	cheapest = current;
 	while (current)
 	{
-		if (current->cost < cheapest->cost)
-			cheapest = current;
+		current->cheapest = false;
+		if (current->cost < cheapest_value)
+		{
+			cheapest_value = current->cost;
+			cheapest_node = current;
+		}
 		current = current->next;
 	}
-	cheapest->cheapest = true;
+	if (cheapest_node != NULL)
+		cheapest_node->cheapest = true;
 }
 
 t_node	*ft_get_cheapest(t_stack *stack)
 {
 	t_node	*current;
+	t_node	*cheapest_node;
+	long	cheapest_cost;
 
 	if (!stack || !stack->top)
 		return (NULL);
 	current = stack->top;
+	cheapest_node = current;
+	cheapest_cost = current->cost;
 	while (current)
 	{
-		if (current->cheapest)
-			return (current);
+		if (current->cost < cheapest_cost)
+		{
+			cheapest_cost = current->cost;
+			cheapest_node = current;
+		}
 		current = current->next;
 	}
-	return (NULL);
+	return (cheapest_node);
 }
+
