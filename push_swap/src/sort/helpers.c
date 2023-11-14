@@ -97,11 +97,20 @@ t_node	*ft_find_min_node(t_stack *stack)
 	return (lowest_node);
 }
 
-void	ft_set_stack(t_stack *stack_a, t_stack *stack_b)
+void	ft_set_stack(t_stack *stack_a, t_stack *stack_b, char id)
 {
 	ft_update_indexes(stack_a);
 	ft_update_indexes(stack_b);
-	ft_set_targets(stack_a, stack_b);
-	ft_set_costs(stack_a, stack_b);
-	ft_set_cheapest(stack_a);
+	if (id == 'a')
+	{
+		ft_set_targets_a(stack_a, stack_b);
+		ft_set_costs(stack_a, stack_b);
+		ft_set_cheapest(stack_a);
+	}
+	else if (id == 'b')
+	{
+		ft_set_targets_b(stack_a, stack_b);
+		ft_set_costs(stack_b, stack_a);
+		ft_set_cheapest(stack_b);
+	}
 }

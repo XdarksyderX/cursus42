@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   helpers3.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: migarci2 <migarci2@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/06 19:18:54 by migarci2          #+#    #+#             */
+/*   Updated: 2023/11/06 19:18:59 by migarci2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../include/stack.h"
 
@@ -21,7 +32,7 @@ static void	ft_rev_rotate_both(t_stack *stack_a,
 	ft_update_indexes(stack_b);
 }
 
-static void	ft_prep_to_push(t_stack *stack, t_node *to_push, char id)
+void	ft_prep_to_push(t_stack *stack, t_node *to_push, char id)
 {
 	while (stack->top != to_push)
 	{
@@ -32,7 +43,7 @@ static void	ft_prep_to_push(t_stack *stack, t_node *to_push, char id)
 			else
 				rra(stack);
 		}
-		else
+		else if (id == 'b')
 		{
 			if (to_push->above_median)
 				rb(stack);

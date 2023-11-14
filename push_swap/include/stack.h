@@ -43,7 +43,6 @@ void	rotate(t_stack *stack);
 void	reverse_rotate(t_stack *stack);
 void	pop(t_stack *stack);
 
-
 int		*ft_parse_args(int argc, char **argv, int *size);
 int		ft_exists_in_array(int *array, int num, int size);
 t_stack	*ft_init_stack(void);
@@ -52,15 +51,14 @@ int		ft_check_sort(t_stack *stack);
 t_node	*ft_find_max_node(t_stack *stack);
 t_node	*ft_find_min_node(t_stack *stack);
 void	ft_update_indexes(t_stack *stack);
-void	ft_set_targets(t_stack *stack_a, t_stack *stack_b);
+void	ft_set_targets_a(t_stack *stack_a, t_stack *stack_b);
+void	ft_set_targets_b(t_stack *stack_a, t_stack *stack_b);
 void	ft_set_costs(t_stack *stack_a, t_stack *stack_b);
 void	ft_set_cheapest(t_stack *stack);
-void	ft_set_stack(t_stack *stack_a, t_stack *stack_b);
+void	ft_set_stack(t_stack *stack_a, t_stack *stack_b, char id);
 t_node	*ft_get_cheapest(t_stack *stack);
 void	ft_move_a_to_b(t_stack *stack_a, t_stack *stack_b);
 void	ft_move_b_to_a(t_stack *stack_a, t_stack *stack_b);
-
-
 
 void	ft_sort_3_elements(t_stack *stack_a);
 void	ft_sort_5_elements(t_stack *stack_a, t_stack *stack_b);

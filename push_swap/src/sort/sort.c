@@ -11,26 +11,6 @@
 /* ************************************************************************** */
 
 #include "../../include/stack.h"
-#include <stdio.h>
-
-int debug = 0;
-
-void	ft_print_stack(t_stack *stack)
-{
-	t_node	*current;
-
-	if (!debug)
-		return ;
-	current = stack->top;
-	while (current)
-	{
-		printf("data: %d, index: %d, cost: %d, above_median: %d, target: %p, cheapest: %d\n",
-			current->data, current->index, current->cost,
-			current->above_median, current->target, current->cheapest);
-		current = current->next;
-	}
-	printf("\n");
-}
 
 void	ft_sort_3_elements(t_stack *stack_a)
 {
@@ -96,25 +76,20 @@ static void	ft_min_to_top(t_stack *stack)
 
 void	ft_sort(t_stack *stack_a, t_stack *stack_b)
 {
-	ft_print_stack(stack_a);
 	if (stack_a->size > 3 && !ft_check_sort(stack_a))
 		pb(stack_a, stack_b);
 	if (stack_a->size > 3 && !ft_check_sort(stack_a))
 		pb(stack_a, stack_b);
-	ft_print_stack(stack_a);
 	while (stack_a->size > 3 && !ft_check_sort(stack_a))
 	{
-		ft_set_stack(stack_a, stack_b);
+		ft_set_stack(stack_a, stack_b, 'a');
 		ft_move_a_to_b(stack_a, stack_b);
-		ft_print_stack(stack_a);
 	}
-	ft_print_stack(stack_a);
 	ft_sort_3_elements(stack_a);
 	while (stack_b->size)
 	{
-		ft_set_stack(stack_b, stack_a);
+		ft_set_stack(stack_a, stack_b, 'b');
 		ft_move_b_to_a(stack_a, stack_b);
-		ft_print_stack(stack_a);
 	}
 	ft_update_indexes(stack_a);
 	ft_min_to_top(stack_a);
@@ -136,4 +111,3 @@ void	push_swap(t_stack *stack_a, t_stack *stack_b)
 	else
 		ft_sort(stack_a, stack_b);
 }
-
