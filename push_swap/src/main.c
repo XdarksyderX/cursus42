@@ -21,14 +21,13 @@ int	main(int argc, char	**argv)
 
 	input = ft_parse_args(argc, argv, &size);
 	if (!input)
-	{
-		ft_putstr_fd("Error\n", STDOUT_FILENO);
-		return (1);
-	}
+		ft_error();
 	stack_a = ft_init_stack();
 	stack_b = ft_init_stack();
 	ft_fill_stack(stack_a, input, size);
 	free(input);
 	push_swap(stack_a, stack_b);
+	free(stack_a);
+	free(stack_b);
 	return (0);
 }

@@ -76,16 +76,16 @@ static void	ft_min_to_top(t_stack *stack)
 
 void	ft_sort(t_stack *stack_a, t_stack *stack_b)
 {
-	if (stack_a->size > 3 && !ft_check_sort(stack_a))
+	if (stack_a->size > 5 && !ft_check_sort(stack_a))
 		pb(stack_a, stack_b);
-	if (stack_a->size > 3 && !ft_check_sort(stack_a))
+	if (stack_a->size > 5 && !ft_check_sort(stack_a))
 		pb(stack_a, stack_b);
-	while (stack_a->size > 3 && !ft_check_sort(stack_a))
+	while (stack_a->size > 5 && !ft_check_sort(stack_a))
 	{
 		ft_set_stack(stack_a, stack_b, 'a');
 		ft_move_a_to_b(stack_a, stack_b);
 	}
-	ft_sort_3_elements(stack_a);
+	ft_sort_5_elements(stack_a, stack_b);
 	while (stack_b->size)
 	{
 		ft_set_stack(stack_a, stack_b, 'b');

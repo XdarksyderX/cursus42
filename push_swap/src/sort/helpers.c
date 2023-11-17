@@ -51,29 +51,6 @@ int	ft_check_sort(t_stack *stack)
 	return (1);
 }
 
-void	ft_update_indexes(t_stack *stack)
-{
-	int		i;
-	int		median;
-	t_node	*current;
-
-	i = 0;
-	if (!stack)
-		return ;
-	median = stack->size / 2;
-	current = stack->top;
-	while (current)
-	{
-		current->index = i;
-		if (i <= median)
-			current->above_median = true;
-		else
-			current->above_median = false;
-		current = current->next;
-		i++;
-	}
-}
-
 t_node	*ft_find_min_node(t_stack *stack)
 {
 	int				lowest;
@@ -95,22 +72,4 @@ t_node	*ft_find_min_node(t_stack *stack)
 		temp_node = temp_node->next;
 	}
 	return (lowest_node);
-}
-
-void	ft_set_stack(t_stack *stack_a, t_stack *stack_b, char id)
-{
-	ft_update_indexes(stack_a);
-	ft_update_indexes(stack_b);
-	if (id == 'a')
-	{
-		ft_set_targets_a(stack_a, stack_b);
-		ft_set_costs(stack_a, stack_b);
-		ft_set_cheapest(stack_a);
-	}
-	else if (id == 'b')
-	{
-		ft_set_targets_b(stack_a, stack_b);
-		ft_set_costs(stack_b, stack_a);
-		ft_set_cheapest(stack_b);
-	}
 }

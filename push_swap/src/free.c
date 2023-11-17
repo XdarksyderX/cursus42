@@ -12,6 +12,12 @@
 
 #include "../include/stack.h"
 
+void	ft_error(void)
+{
+	ft_putstr_fd("Error\n", STDOUT_FILENO);
+	exit(1);
+}
+
 void	ft_free_str_nums(char **arr, int size)
 {
 	int	i;

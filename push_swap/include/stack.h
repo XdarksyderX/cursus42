@@ -17,6 +17,10 @@
 # include <limits.h>
 # include <stdbool.h>
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 36
+# endif
+
 typedef struct node
 {
 	int			data;
@@ -60,6 +64,8 @@ t_node	*ft_get_cheapest(t_stack *stack);
 void	ft_move_a_to_b(t_stack *stack_a, t_stack *stack_b);
 void	ft_move_b_to_a(t_stack *stack_a, t_stack *stack_b);
 
+void	ft_error(void);
+
 void	ft_sort_3_elements(t_stack *stack_a);
 void	ft_sort_5_elements(t_stack *stack_a, t_stack *stack_b);
 void	push_swap(t_stack *stack_a, t_stack *stack_b);
@@ -80,5 +86,7 @@ void	rrb(t_stack *stack_b);
 void	rrr(t_stack *stack_a, t_stack *stack_b);
 
 void	ft_free_str_nums(char **arr, int size);
+
+char	*get_next_line(int fd);
 
 #endif
