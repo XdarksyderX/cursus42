@@ -7,11 +7,13 @@ static int	read_char(int fd, char *buffer, int *i)
 	bytes_read = read(fd, &buffer[*i], 1);
 	if (bytes_read <= 0)
 		return (bytes_read);
+
 	if (buffer[*i] == '\n' || *i == BUFFER_SIZE)
 	{
 		buffer[*i] = '\0';
 		return (1);
 	}
+
 	(*i)++;
 	return (2);
 }

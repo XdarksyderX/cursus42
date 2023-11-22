@@ -1,6 +1,8 @@
 NAME=so_long
-SRC=
-OBJ=$(SRC:.c=.o)
+SRC=src/helpers/error.c src/helpers/clean.c src/main.c src/map/get_next_line.c src/map/map_checker.c src/map/map_parser.c src/rendering/init_mlx.c src/rendering/render.c
+
+OBJ_DIR = ./obj
+OBJ=$(SRC:%.c=$(OBJ_DIR)/%.o)
 
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror -g
@@ -11,25 +13,27 @@ LIBFT_LIB = $(LIBFT_DIR)/libft.a
 UNAME := $(shell uname)
 
 ifeq ($(UNAME), Linux)
-	INCLUDES = -I/usr/include -Imlx
-	MLX_URL = https://github.com/42Paris/minilibx-linux.git
+    INCLUDES = -I/usr/include -I ./libs/mlx -I$(LIBFT_DIR)
+    MLX_URL = https://github.com/42Paris/minilibx-linux.git
+    MLX_LIB = mlx_Linux
 else
-	INCLUDES = -I/opt/X11/include -Imlx
-	MLX_URL = https://cdn.intra.42.fr/document/document/22152/minilibx_opengl.tgz
+    INCLUDES = -I/opt/X11/include -I ./libs/mlx -I$(LIBFT_DIR)
+    MLX_URL = https://cdn.intra.42.fr/document/document/22152/minilibx_opengl.tgz
+    MLX_LIB = mlx
 endif
 
 MLX_DIR = ./libs/mlx
-MLX_LIB = $(MLX_DIR)/libmlx_$(UNAME).a
 
 ifeq ($(UNAME), Linux)
-	MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
+    MLX_FLAGS = -L$(MLX_DIR) -l$(MLX_LIB) -L/usr/lib/X11 -lXext -lX11 -L$(LIBFT_DIR) -lft
 else
-	MLX_FLAGS = -Lmlx -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
+    MLX_FLAGS = -L$(MLX_DIR) -l$(MLX_LIB) -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit -L$(LIBFT_DIR) -lft
 endif
 
-all: $(MLX_LIB) $(NAME)
+all: $(LIBFT_LIB) $(MLX_LIB) $(NAME)
 
-%.o: %.c
+$(OBJ_DIR)/%.o: %.c
+	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c -o $@ $< $(INCLUDES)
 
 $(NAME): $(OBJ)
@@ -50,7 +54,7 @@ $(LIBFT_LIB):
 	@make -C $(LIBFT_DIR)
 
 clean:
-	@rm -f $(OBJ)
+	@rm -rf $(OBJ_DIR)
 	@make clean -C $(MLX_DIR)
 	@make clean -C $(LIBFT_DIR)
 

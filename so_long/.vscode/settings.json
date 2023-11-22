@@ -2,6 +2,13 @@
 	"files.associations": {
 		"map.h": "c",
 		"libft.h": "c",
-		"stdlib.h": "c"
+		"stdlib.h": "c",
+		"random": "c",
+		"rendering.h": "c",
+		"helpers.h": "c",
+		"array": "c",
+		"string": "c",
+		"string_view": "c",
+		"mlx.h": "c"
 	}
 }

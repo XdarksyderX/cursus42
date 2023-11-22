@@ -2,9 +2,14 @@
 # define HELPERS_H
 
 # include "../libs/libft/libft.h"
-# include "map.h"
 
-void	ft_free_map(t_map *map);
-void	*ft_realloc(void *ptr, size_t new_size, size_t old_size);
+typedef struct s_data	t_data;
+typedef struct s_map	t_map;
+
+void	ft_error(char	*msg);
+
+void	*ft_free_map(t_map *map);
+void	*ft_free_data(t_data *data);
+void	*ft_cleanup_sprites(t_data *data, int loaded);
 
 #endif
