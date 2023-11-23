@@ -1,7 +1,5 @@
 #include "../inc/map.h"
 #include "../inc/rendering.h"
-#include <fcntl.h>
-#include <stdio.h>
 
 int	main(int argc, char **argv)
 {
@@ -12,7 +10,7 @@ int	main(int argc, char **argv)
 	data = ft_init_data(argv[1]);
 	if (!data)
 		ft_error("Data initialization failed");
-	ft_render_map(data);
+	ft_render_map(data, NULL);
 	mlx_loop(data->mlx_ptr);
 	return (0);
 }

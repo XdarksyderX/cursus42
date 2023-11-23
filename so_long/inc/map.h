@@ -16,11 +16,15 @@ typedef struct s_map
 	int		width;
 	int		height;
 	int		max_collectives;
-	int		player_position[2];
+	int		collected;
+	int		exit_cords[2];
 }	t_map;
 
 char	*get_next_line(int fd);
 bool	ft_validate_map(t_map *map);
 t_map	*ft_get_map(char *path);
+
+t_map	*ft_copy_map(t_map *map);
+int		find_player(t_map *map, int player_cords[2]);
 
 #endif

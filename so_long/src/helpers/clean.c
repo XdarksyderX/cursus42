@@ -42,10 +42,13 @@ void	*ft_free_data(t_data *data)
 	{
 		if (data->map)
 			ft_free_map(data->map);
-		if (data->mlx_ptr && data->win_ptr)
-			mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		if (data->textures)
-			ft_cleanup_sprites(data, 5);
+			ft_cleanup_sprites(data, NUM_TEXTURES);
+		if (data->mlx_ptr)
+		{
+			if (data->win_ptr)
+				mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+		}
 		free(data);
 	}
 	return (NULL);

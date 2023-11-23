@@ -5,6 +5,7 @@ static int	*ft_get_map_size(int fd)
 {
 	int		*map_size;
 	char	*line;
+	int		line_length;
 
 	map_size = malloc(sizeof(int) * 2);
 	if (!map_size)
@@ -12,11 +13,17 @@ static int	*ft_get_map_size(int fd)
 	map_size[0] = 0;
 	map_size[1] = 0;
 	line = get_next_line(fd);
+	map_size[0] = ft_strlen_protected(line);
 	while (line)
 	{
 		map_size[1]++;
-		if (map_size[0] < (int) ft_strlen(line))
-			map_size[0] = ft_strlen(line);
+		line_length = ft_strlen_protected(line);
+		if (line_length != map_size[0])
+		{
+			free(line);
+			free(map_size);
+			return (NULL);
+		}
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -29,7 +36,7 @@ static t_map	*ft_init_map(int *map_size)
 	int		i;
 
 	map = malloc(sizeof(t_map));
-	if (!map)
+	if (!map || !map_size)
 		return (NULL);
 	map->width = map_size[0];
 	map->height = map_size[1];
@@ -83,9 +90,9 @@ static t_map	*ft_update_map_details(t_map *map)
 	int	j;
 
 	map->max_collectives = 0;
-	map->player_position[0] = -1;
-	map->player_position[1] = -1;
-
+	map->collected = 0;
+	map->exit_cords[0] = -1;
+	map->exit_cords[1] = -1;
 	i = 0;
 	while (i < map->height)
 	{
@@ -94,10 +101,10 @@ static t_map	*ft_update_map_details(t_map *map)
 		{
 			if (map->map[i][j] == 'C')
 				map->max_collectives++;
-			if (map->map[i][j] == 'P')
+			else if (map->map[i][j] == 'E')
 			{
-				map->player_position[0] = i;
-				map->player_position[1] = j;
+				map->exit_cords[0] = j;
+				map->exit_cords[1] = i;
 			}
 			j++;
 		}
