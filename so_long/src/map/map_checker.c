@@ -58,7 +58,7 @@ static bool	ft_check_player_and_exit(t_map *map)
 				exit_count++;
 			j++;
 			if (player_count > 1 || exit_count > 1)
-				return (0);
+				return (false);
 		}
 		i++;
 	}
@@ -84,7 +84,7 @@ static bool	ft_check_collectibles(t_map *map)
 			if (!(map->map[i][j] == 'P' || map->map[i][j] == 'E'
 				|| map->map[i][j] == '1'
 					|| map->map[i][j] == '0' || map->map[i][j] == 'C'))
-				return (0);
+				return (false);
 		}
 		i++;
 	}
@@ -100,6 +100,8 @@ bool	ft_validate_map(t_map *map)
 	if (!ft_check_player_and_exit(map))
 		return (false);
 	if (!ft_check_collectibles(map))
+		return (false);
+	if (!ft_can_collect_all_and_exit(map))
 		return (false);
 	return (true);
 }

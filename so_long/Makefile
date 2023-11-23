@@ -1,5 +1,5 @@
 NAME=so_long
-SRC=src/helpers/error.c src/helpers/util.c src/helpers/clean.c src/main.c src/map/get_next_line.c src/map/map_checker.c src/map/map_parser.c src/map/map_utils.c src/rendering/init_mlx.c src/rendering/render.c src/controls/hooks.c src/controls/move.c
+SRC=src/helpers/error.c src/helpers/util.c src/helpers/clean.c src/main.c src/map/get_next_line.c src/map/map_checker.c src/map/map_parser.c src/map/map_utils.c src/map/map_solvable.c src/rendering/init_mlx.c src/rendering/render.c src/controls/hooks.c src/controls/move.c
 
 OBJ_DIR = ./obj
 OBJ=$(SRC:%.c=$(OBJ_DIR)/%.o)

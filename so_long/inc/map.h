@@ -22,6 +22,7 @@ typedef struct s_map
 
 char	*get_next_line(int fd);
 bool	ft_validate_map(t_map *map);
+bool	ft_can_collect_all_and_exit(t_map *map);
 t_map	*ft_get_map(char *path);
 
 t_map	*ft_copy_map(t_map *map);
