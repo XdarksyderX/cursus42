@@ -1,47 +1,35 @@
-# Cursus 42
 
-This repository contains my solutions for the projects of the 42 cursus in Málaga. Below is a brief description of each project.
+# 42 School Projects by me :)
 
-## Project Index
+## Overview
+This repository serves as a comprehensive collection of my projects developed as part of the 42 school curriculum. These projects cover a range of topics from system programming to graphical projects and algorithms.
 
-1. [libft](#libft)
-2. [ft_printf](#ft_printf)
-3. [get_next_line](#get_next_line)
-4. [Born2BeRoot](#born2beroot)
-5. [Pipex](#pipex)
-6. [Minitalk](#minitalk)
-7. [Push_swap](#push_swap)
+## Projects
+### [Libft](https://github.com/xdarksyderx/libft)
+Custom C library that replicates the functionality of various standard C library functions and adds additional utility functions.
 
-### libft
+### [ft_printf](https://github.com/xdarksyderx/ft_printf)
+A reimplementation of the `printf` function in C, handling multiple format specifiers and custom conversions.
 
-`libft` is a project where I recreated some of the most commonly used functions from the C standard library, `libc`. This custom library has been a foundational tool for many of my subsequent projects in 42.
+### [Push_swap](https://github.com/xdarksyderx/push_swap)
+An algorithmic challenge to sort data on a stack using a limited set of operations in as few moves as possible.
 
-### ft_printf
+### [Pipex](https://github.com/xdarksyderx/pipex)
+Mimics the behavior of shell pipelines in Unix, using file descriptors and process management.
 
-`ft_printf` is a recreation of the famous C function `printf`. The main objective here is to learn about variadic functions in C and how to handle different types of formats and arguments.
+### [So_Long](https://github.com/xdarksyderx/so_long)
+A 2D video game, focusing on graphical programming and 2D rendering using the MiniLibX library.
 
-### get_next_line
+### [Minitalk](https://github.com/xdarksyderx/minitalk)
+A communication program in the form of a client and server, demonstrating UNIX signals and inter-process communication.
 
-`get_next_line` is a function that reads a line from a file descriptor. It's useful for reading user input or processing files line by line.
+## Skills Developed
+- Deep understanding of C programming and system-level operations.
+- Familiarity with Unix/Linux environments and their system calls.
+- Hands-on experience with low-level graphical libraries (e.g., MiniLibX).
+- Problem-solving and algorithmic thinking.
 
-### Born2BeRoot
+## Additional Information
+For more detailed information, please visit the individual project repositories linked above. Feel free to reach out for collaboration or any queries related to these projects.
 
-`Born2BeRoot` is a system administration project. Here, I set up a virtual machine with specific security specs and configurations.
-
-### Pipex
-
-`Pipex` simulates the behavior of the shell in terms of pipes and redirections. It's a simple representation of how `pipe` and `dup2` are used in systems programming.
-
-### Minitalk
-
-`Minitalk` is a program that uses UNIX signals to communicate between a server and a client. It's an introduction to programming with signals in C.
-
-### Push_swap
-
-`Push_swap` is an algorithms project. The goal is to sort a stack of numbers using the least number of operations and two auxiliary stacks.
-
----
-
-I hope this repository is helpful for future students or anyone interested in C programming and systems concepts. If you have any questions or feedback, please feel free to reach out.
-
-
+Thank you for visiting my project collection!

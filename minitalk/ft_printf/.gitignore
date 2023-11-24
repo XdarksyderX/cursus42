@@ -1,8 +1,0 @@
-pft/
-.vscode/
-*.gch
-*.tar
-*.a
-*.o
-*.c.not
-a.out
